@@ -1,0 +1,11 @@
+{% extends "header.html" %}
+{% block title %}Post{% endblock %}
+{% block body %}
+<form method="POST">
+    <label>Post Title</label>
+    <input class="form-control col-lg-2" name="post-title">
+    <label>Post Content</label>
+    <textarea class="form-control col-lg-4" name="post-desc" rows="3"></textarea>
+    <input class="btn btn-success" type=submit name=submit value="Post!">
+</form>
+{% endblock %}

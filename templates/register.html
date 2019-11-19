@@ -1,0 +1,22 @@
+{% extends "header.html" %}
+{% block title %}Flask-Blog Register{% endblock %}
+{% block body %}
+<center>
+<div>
+    <h3 class="font-weight-normal">Sign Up</h3>
+    <hr class="col-lg-3">
+    {% if return_message %}
+        <span class="badge badge-danger">{{return_message}}</span>
+        <hr class="col-lg-3">
+    {% endif %}
+    <form action="/register" method="POST">
+        <label>Username: </label>
+        <input minlength=4 class="form-control col-lg-3" name="username" placeholder="Username" aria-label="Username" required>
+        <label>Email:</label>
+        <input class="form-control col-lg-3" type=email name="email" placeholder="Email" aria-label="Email" required>
+        <label>Password:</label>
+        <input minlength=6 type=password class="form-control col-lg-3" name="password" placeholder="Password" aria-label="Password" required>
+        <hr class="col-lg-3">
+        <input class="btn btn-dark btn-block col-lg-3" type=submit value=Register>
+</form></center></div>
+{% endblock %}

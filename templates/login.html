@@ -1,0 +1,16 @@
+{% extends "header.html" %}
+{% block title %}Flask-Blog Login{% endblock %}
+{% block body %}
+<center>
+<div>
+    <h3 class="font-weight-normal">Login</h3>
+    <hr class="col-lg-3">
+    <form action="/login" method="POST">
+        <label>Email:</label>
+        <input class="form-control col-lg-3" name="email" placeholder="Email" aria-label="Email" required>
+        <label>Password:</label>
+        <input type=password class="form-control col-lg-3" name="password" placeholder="Password" aria-label="Password" required>
+        <hr class="col-lg-3">
+        <input class="btn btn-dark btn-block col-lg-3" type=submit value=Login>
+</form></center></div>
+{% endblock %}

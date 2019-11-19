@@ -1,0 +1,44 @@
+{% extends "header.html" %}
+{% block title %}Home{% endblock %}
+{% block body %}
+<style>
+    img{
+        object-fit: contain;
+        padding: 0;
+        }
+    .blog-post{
+        background-color:antiquewhite;
+    }
+</style>
+<br>
+
+{% for post in posts %}
+<div class="row no-gutters blog-post col-md-9">
+    <img class="col-md-4 rounded" width=480px height=270px src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.fujifilm.com%2Fproducts%2Fdigital_cameras%2Fx%2Ffujifilm_x_t1%2Fsample_images%2Fimg%2Findex%2Fff_x_t1_001.JPG&f=1&nofb=1">
+    <div class="col-md-8">
+
+        <h3 class="display-4">{{post[0]}}</h3>
+        <p class="lead">{{post[1]}}</p>
+        <hr class="my-4">
+        <p>By <b>{{post[2]}}</b> | {{post[6]}} |</p>
+    </div>
+</div>
+<div>
+{% if post[7] %}
+    <h4>Comments ({{post[7]|length}}):</h4>
+    {% for comment in comments %}
+        {{comment[0]}} by {{comment[1]}}<hr>
+    {% endfor %}
+{% else %}
+    <h4>Comments (0):</h4>
+{% endif %}
+{% if current_user.is_authenticated %}
+<form method="POST">
+        <label>Add Comment</label>
+        <textarea class="form-control col-lg-4" name="comment-content" rows="3"></textarea>
+        <input class="btn btn-success" type=submit name=submit value="Add">
+</form>
+{% endif %}
+</div>
+{% endfor %}
+{% endblock %}
