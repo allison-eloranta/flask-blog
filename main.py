@@ -33,6 +33,7 @@ class User(db.Model, UserMixin):
     name = db.Column(db.String(32), index=True, unique=True)
     email = db.Column(db.String(64), index=True, unique=True)
     password = db.Column(db.String(32))
+    blogger = db.Column(db.Boolean(), default=False)
     def check_password(self, password):
         return check_password_hash(self.password, password)
     def logout(self, user):
@@ -62,7 +63,7 @@ def index():
 
 @app.route('/post', methods=['GET', 'POST'])
 def post():
-    if current_user.is_authenticated:
+    if current_user.is_authenticated and current_user.blogger == True:
         if request.method == 'POST':
             # Get values of the form
             title=request.form['post-title']
@@ -127,7 +128,10 @@ def register():
             return_message = 'Email address or username already exists. Try logging in.'
             return render_template('register.html', return_message=return_message)
         # Create new user
-        new_user = User(email=email, name=name, password=password)
+        if name == "admin":
+            new_user = User(email=email, name=name, password=password, blogger=True)
+        else:
+            new_user = User(email=email, name=name, password=password)
         db.session.add(new_user)
         db.session.commit()
         # Login the new user
