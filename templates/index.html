@@ -21,16 +21,18 @@
 <div class="row no-gutters blog-post col-md-9">
     <img class="col-md-4 rounded" width=480px height=270px src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.fujifilm.com%2Fproducts%2Fdigital_cameras%2Fx%2Ffujifilm_x_t1%2Fsample_images%2Fimg%2Findex%2Fff_x_t1_001.JPG&f=1&nofb=1">
     <div class="col-md-8">
-        <h3 class="display-4">{{post[0]}}</h3>
+        <h3 class="display-4"><a href="/posts/{{post[5]}}" style="text-decoration: none; color: black;">{{post[0]}}</a></h3>
         {% if post[1]|length >= 300 %}
-        <p class="lead">{{post[1][:297]}}<a class="span" href="/posts/{{post[5]}}">...</a><span class="hidden">Read More</span></p>
+        <p class="lead">{{post[1][:297]}}<a class="span" title="Read More" href="/posts/{{post[5]}}">...</a></p>
         {% else %}
-        <p class="lead">{{post[1][:297]}}<a class="span" href="/posts/{{post[5]}}">...</a><span class="hidden">Read More</span></p>
+        <p class="lead">{{post[1][:297]}}<a class="span" title="Read More" href="/posts/{{post[5]}}">...</a></p>
         {% endif %}
 
         <hr class="my-4">
-        <p>By <b>{{post[2]}}</b> | {{post[6]}} | 0 Comments</p>
+        <p>By <b>{{post[2]}}</b> | {{post[6]}} | {% if post[7] %} {{post[7]|length}} {% else %} 0 {% endif %} Comments</p>
+
     </div>
 </div>
+<hr>
 {% endfor %}
 {% endblock %}

@@ -5,7 +5,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Flask-Blog</a>
+        <a class="navbar-brand" href="/">Flask-Blog</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -16,12 +16,13 @@
                 <a class="nav-item nav-link" href="/register">Register</a>
             {% elif current_user.is_authenticated %}
                 <a class="nav-item nav-link" href="#">{{current_user.name}}</a>
+                <a class="nav-item nav-link" href="/logout">Logout</a>
             {% endif %}
             </div>
         </div>
     </nav>
     {% if return_message %}
-        <span class="badge badge-danger">{{return_message}}</span>
+        <span class="alert alert-danger">{{return_message}}</span>
         <hr class="col-lg-3">
     {% endif %}
 {%block body%}
